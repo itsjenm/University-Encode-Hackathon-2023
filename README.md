@@ -2,11 +2,11 @@
   <a href="" rel="noopener">
  <img src="https://i.imgur.com/AZ2iWek.png" alt="Project logo"></a>
 </p>
-<h3 align="center">Project Title</h3>
+<h3 align="center">Recommend Me</h3>
 
 <div align="center">
 
-[![Hackathon](https://img.shields.io/badge/hackathon-name-orange.svg)](http://hackathon.url.com)
+
 [![Status](https://img.shields.io/badge/status-active-success.svg)]()
 [![GitHub Issues](https://img.shields.io/github/issues/kylelobo/The-Documentation-Compendium.svg)](https://github.com/kylelobo/The-Documentation-Compendium/issues)
 [![GitHub Pull Requests](https://img.shields.io/github/issues-pr/kylelobo/The-Documentation-Compendium.svg)](https://github.com/kylelobo/The-Documentation-Compendium/pulls)
@@ -16,7 +16,7 @@
 
 ---
 
-<p align="center"> Few lines describing your project.
+<p align="center"> Store your recommendations, notes, and essays in one place 
     <br> 
 </p>
 
@@ -35,25 +35,18 @@
 
 ## 🧐 Problem Statement <a name = "problem_statement"></a>
 
-It is useful to design and follow a specific format when writing a problem statement. While there are several options
-for doing this, the following is a simple and straightforward template often used in Business Analysis to maintain
-focus on defining the problem.
+Keeping track of scholarship applications is hard, and it's even more stressful when each application you apply to requires several recommendations, essays, and transcripts.  
 
-- IDEAL: This section is used to describe the desired or “to be” state of the process or product. At large, this section
-  should illustrate what the expected environment would look like once the solution is implemented.
-- REALITY: This section is used to describe the current or “as is” state of the process or product.
-- CONSEQUENCES: This section is used to describe the impacts on the business if the problem is not fixed or improved upon.
-  This includes costs associated with loss of money, time, productivity, competitive advantage, and so forth.
+- IDEAL: Have a place to store and process recommendations efficiently by sending letters of recommendations to your professors/collegues to fill out, and reuse them in several scholarships and college applications. 
 
-Following this format will result in a workable document that can be used to understand the problem and elicit
-requirements that will lead to a winning solution.
+- REALITY: Recommendations take time to be written and processed, and many students get discouraged from applying to scholarships for this reasion. Recommendations usually have to be sent to the instutions privately and directly. However, it would be great to have a way to send friends a link to have them process the recommendation easily and fast for your benefit. 
+
+- CONSEQUENCES: Not having a place dedicated to managing scholarships and recommendations discourages a lot of students from applying and from receiving funding opportunities. 
+
 
 ## 💡 Idea / Solution <a name = "idea"></a>
 
-This section is used to describe potential solutions.
-
-Once the ideal, reality, and consequences sections have been
-completed, and understood, it becomes easier to provide a solution for solving the problem.
+A web app that keeps your recommendations secured, accessible, and within reach for you to use in scholarships, college applications and more. 
 
 ## ⛓️ Dependencies / Limitations <a name = "limitations"></a>
 
@@ -76,48 +69,57 @@ and testing purposes. See [deployment](#deployment) for notes on how to deploy t
 
 ### Prerequisites
 
-What things you need to install the software and how to install them.
+Start by going into the my-app folder using the command below
 
 ```
-Give examples
+cd my-app
 ```
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running.
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
+Before running, make sure to 
+Install dependencies
 
 ```
-until finished
+npm install
+```
+
+And run  using 
+
+```
+npm run dev
 ```
 
 ## 🎈 Usage <a name="usage"></a>
 
-Add notes about how to use the system.
+- Sign in with Ethereum, Github, or Google 
+- Sign message and agree to Kepler Storage Terms 
+- Use the input fields to store data you want to keep in your orbit
+
+
+    ``````
+      Example: 
+          For: University of Illinois
+          Topic: Recommendation
+          From: Professor X 
+
+          Letter: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. In mollis nunc sed id. Id aliquet risus feugiat in ante metus dictum at tempor. Praesent elementum facilisis leo vel fringilla est ullamcorper eget nulla. In hac habitasse platea dictumst quisque sagittis purus sit amet. Ut porttitor leo a diam sollicitudin. Lectus arcu bibendum at varius vel. Id cursus metus aliquam eleifend mi in. Hendrerit dolor magna eget est lorem ipsum dolor sit. A condimentum vitae sapien pellentesque.   
+    `````` 
 
 ## ⛏️ Built With <a name = "tech_stack"></a>
 
-- [MongoDB](https://www.mongodb.com/) - Database
-- [Express](https://expressjs.com/) - Server Framework
-- [VueJs](https://vuejs.org/) - Web Framework
+- [SpruceKit - SIWE](https://www.spruceid.dev/) - Identity Authentication 
+- [Kepler Orbits](https://www.spruceid.dev/) - Storage
+- [NextJS](https://nextjs.org/) - Web Framework
 - [NodeJs](https://nodejs.org/en/) - Server Environment
 
 ## ✍️ Authors <a name = "authors"></a>
 
-- [@kylelobo](https://github.com/kylelobo) - Idea & Initial work
+- [@itsjenm](https://github.com/itsjenm) - Idea & Initial work
 
-See also the list of [contributors](https://github.com/kylelobo/The-Documentation-Compendium/contributors)
-who participated in this project.
 
 ## 🎉 Acknowledgments <a name = "acknowledgments"></a>
 
-- Hat tip to anyone whose code was used
-- Inspiration
-- References
+
+- Inspiration: [Joyce built using SpruceId](https://joyce.spruceid.xyz/)
+
