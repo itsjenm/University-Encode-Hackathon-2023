@@ -1,14 +1,13 @@
-'use client'
+"use client";
 
 import { ChakraProvider, Container, Heading } from "@chakra-ui/react";
+import Navigation from "../../components/Navigation";
 
 const Contact = () => {
   return (
     <ChakraProvider>
-      <Container textAlign='center'>
-        <Heading>
-            Contact us
-        </Heading>
+      <Container textAlign="center" margin="300px">
+        <Navigation />
       </Container>
     </ChakraProvider>
   );

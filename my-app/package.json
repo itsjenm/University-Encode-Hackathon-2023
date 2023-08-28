@@ -5,8 +5,9 @@
   "scripts": {
     "dev": "concurrently \"next dev\" \"node api-server\"",
     "dev:api": "nodemon api-server",
-    "build": "next build",
-    "start": "next start",
+    "build": "next build && next export",
+    "start": "concurrently \"next start\" \"node api-server\"",
+    "start:api": "node api-server",
     "lint": "next lint"
   },
   "dependencies": {
@@ -22,6 +23,7 @@
     "@types/node": "20.4.10",
     "@types/react": "18.2.20",
     "@types/react-dom": "18.2.7",
+    "@unioncredit/ui": "^2.0.12",
     "@unioncredit/v2-sdk": "^1.0.0",
     "axios": "^1.4.0",
     "concurrently": "^8.2.1",
@@ -37,6 +39,7 @@
     "jwks-rsa": "^3.0.1",
     "morgan": "^1.10.0",
     "next": "13.4.13",
+    "next-build-id": "^3.0.0",
     "nodemon": "^3.0.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",

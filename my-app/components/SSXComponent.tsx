@@ -4,10 +4,15 @@ import { useState } from "react";
 import { Button } from "@chakra-ui/react";
 import { ethers } from "ethers";
 import KeplerStorageComponent from "./KeplerStorageComponent";
-import RebaseCredentialComponent from "../../RebaseCredentialComponent";
+import RebaseCredentialComponent from "./RebaseCredentialComponent";
 import SpruceKitCredentialComponent from "./SpruceKitCredentialComponent";
+
+
+
 const SSXComponent = () => {
   const [ssxProvider, setSSX] = useState<SSX | null>(null);
+
+  
 
   const ssxHandler = async () => {
     const ssx = new SSX({
@@ -21,12 +26,7 @@ const SSXComponent = () => {
       },
       providers: {
         server: {
-          host: "http://localhost:3000",
-          routes: {
-           
-            login: "/api/auth/login",
-            logout: "/api/auth/logout",
-          },
+          host: "http://localhost:3000/api",
         },
         web3: {
           driver: window.ethereum,
@@ -51,7 +51,7 @@ const SSXComponent = () => {
   };
 
   // ENS DATA
-  const { domain, avatarUrl } = ssxProvider?.session()?.ens ?? {};
+  const { avatarUrl } = ssxProvider?.session()?.ens ?? {};
 
   // the address that is connected and signed in.
   const address = ssxProvider?.address() || "";
@@ -60,7 +60,9 @@ const SSXComponent = () => {
     <>
       {ssxProvider ? (
         <>
-          <b>Avatar:</b> <code>{avatarUrl}</code>
+          <b>ENS Name:</b> <code>{avatarUrl}</code>
+          <KeplerStorageComponent ssx={ssxProvider} />
+          {/* <SpruceKitCredentialComponent ssx={ssxProvider} /> */}
           {/* <b>ENS Data:</b> <code>{domain}</code>
           <b>Avatar:</b> <code>{avatarUrl}</code>
           {address && (
@@ -81,7 +83,7 @@ const SSXComponent = () => {
         </>
       ) : (
         <Button onClick={ssxHandler} id="sign-in_button" colorScheme="teal">
-          <span>Connect wallet</span>
+          <span>Sign & agree to terms</span>
         </Button>
       )}
     </>

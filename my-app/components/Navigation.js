@@ -21,14 +21,24 @@ import { HamburgerIcon, CloseIcon, ChevronDownIcon } from "@chakra-ui/icons";
 import NextLink from "next/link";
 import SSXComponent from "@/components/SSXComponent";
 import { useUser } from "@auth0/nextjs-auth0/client";
+import { useRouter } from "next/navigation";
+
+
 
 // Dark mode and nav items
 
-export const DarkModeSwitch = () => {
+export const Navigation = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const isDark = colorMode === "dark";
   const { user, error, isLoading } = useUser();
   const [display, changeDisplay] = useState("none");
+  const Router = useRouter();
+  
+  const handleNavigation = () => {
+    if(user) {
+      Router.push('/profile')
+    }
+  }
 
   return (
     <Flex>
@@ -65,28 +75,7 @@ export const DarkModeSwitch = () => {
               Home
             </Button>
           </NextLink>
-          <NextLink href="/about" passHref>
-            <Button
-              variant="link"
-              aria-label="About"
-              my={5}
-              w="100%"
-              paddingRight="20"
-            >
-              About
-            </Button>
-          </NextLink>
-          <NextLink href="/resources" passHref>
-            <Button
-              variant="link"
-              aria-label="Resources"
-              my={5}
-              w="100%"
-              paddingRight="20"
-            >
-              Resources
-            </Button>
-          </NextLink>
+        
           <NextLink href="/contact" passHref>
             <Button
               variant="link"
@@ -113,7 +102,7 @@ export const DarkModeSwitch = () => {
           {/* connect wallet logic  if user is not logged in */}
           {!user && (
             <NextLink href="/api/auth/login" passHref>
-              <Button id="sign-in_button" colorScheme="teal">
+              <Button id="sign-in_button" colorScheme="teal" onClick={handleNavigation}>
                 <span>Connect wallet</span>
               </Button>
             </NextLink>
@@ -130,16 +119,12 @@ export const DarkModeSwitch = () => {
                 />
               </MenuButton>
               <MenuList>
-                <MenuItem as={Button}>
-                  <NextLink href="/profile" icon="user">
-                    Profile
-                  </NextLink>
-                </MenuItem>
-                <MenuItem as={Button}>
-                  <NextLink href="/api/auth/logout" passHref>
-                    Logout
-                  </NextLink>
-                </MenuItem>
+                <NextLink href="/profile" icon="user">
+                  <MenuItem as={Button}>Profile</MenuItem>
+                </NextLink>
+                <NextLink href="/api/auth/logout" passHref>
+                  <MenuItem as={Button}>Logout</MenuItem>
+                </NextLink>
               </MenuList>
             </Menu>
           )}
@@ -193,22 +178,16 @@ export const DarkModeSwitch = () => {
             </Button>
           </NextLink>
 
-          <NextLink href="/about" passHref>
-            <Button aria-label="About" my={5} w="100%" color="black">
-              About
-            </Button>
-          </NextLink>
-
           <NextLink href="/contact" passHref>
             <Button aria-label="Contact" my={5} w="100%" color="black">
               Contact
             </Button>
           </NextLink>
-          <SSXComponent />
+          
         </Flex>
       </Flex>
     </Flex>
   );
 };
 
-export default DarkModeSwitch;
+export default Navigation;

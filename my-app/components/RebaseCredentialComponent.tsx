@@ -5,6 +5,7 @@ import { ethers } from "ethers";
 import { useEffect, useState } from "react";
 import { defaultClientConfig, type Types } from '@spruceid/rebase-client';
 import type { AttestationProof, AttestationStatement } from '@spruceid/rebase-client/bindings';
+import { toCredentialEntry } from "@/utils/rebase";
 
 interface IRebaseCredentialComponent {
   ssx: SSX;

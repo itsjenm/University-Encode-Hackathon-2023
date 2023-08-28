@@ -1,6 +1,18 @@
 import { SSX } from "@spruceid/ssx";
 import { useEffect, useState } from "react";
 import { toCredentialEntry } from "@/utils/rebase";
+import {
+  Box,
+  Heading,
+  Table,
+  Tbody,
+  Tr,
+  Td,
+  Button,
+  Text,
+  Code,
+  Container,
+} from "@chakra-ui/react";
 
 interface ICredentialComponent {
   ssx: SSX;
@@ -14,19 +26,24 @@ const SpruceKitCredentialComponent = ({ ssx }: ICredentialComponent) => {
   const handleGetContent = async (content: string) => {
     setLoading(true);
     try {
-      const contentName = content.replace('my-app/', '')
+      const contentName = content.replace("my-app/", "");
       const { data } = await ssx.credentials.get(contentName);
-      setViewingContent(`${content}:\n${JSON.stringify(toCredentialEntry(data), null, 2)}`);
+      setViewingContent(
+        `${content}:\n${JSON.stringify(toCredentialEntry(data), null, 2)}`
+      );
+   
     } catch (e) {
       console.error(e);
     }
     setLoading(false);
-  }
+  };
 
   useEffect(() => {
     const getCredentialList = async () => {
       try {
-        const credentialListResult = await ssx.credentials?.list?.({ removePrefix: true });
+        const credentialListResult = await ssx.credentials?.list?.({
+          removePrefix: true,
+        });
         if (credentialListResult?.data) {
           setCredentialsList(credentialListResult.data);
         }
@@ -38,31 +55,32 @@ const SpruceKitCredentialComponent = ({ ssx }: ICredentialComponent) => {
   }, [ssx]);
 
   return (
-    <div style={{ marginTop: 2}} >
-      <h2>SpruceKit Credentials</h2>
-      <table>
-        <tbody>
+    <Box marginTop={2} display="flex" flexDirection="column" >
+      <Heading as="h2" size="md" >
+        SpruceKit Credentials
+      </Heading>
+      <Table display="flex" justifyContent="center">
+        
+        <Tbody>
           {credentialsList?.map((credential, i) => (
-            <tr key={i}>
-              <td>{credential}</td>
-              <td>
-                <button
+            <Tr key={i}>
+              <Td>{credential}</Td>
+              <Td>
+                <Button
                   onClick={() => handleGetContent(credential)}
                   disabled={loading}
                 >
-                  <span>
-                    GET
-                  </span>
-                </button>
-              </td>
-            </tr>
+                  GET
+                </Button>
+              </Td>
+            </Tr>
           ))}
-        </tbody>
-      </table>
-      <pre style={{ marginTop: 25 }}>
-        {viewingContent}
-      </pre>
-    </div>
+        </Tbody>
+      </Table>
+      <Container display="flex" marginTop={25} flexWrap="wrap" width="20px" justifyContent="center" textAlign="center">
+        <Code width="lg">{viewingContent}</Code>
+      </Container>
+    </Box>
   );
 };
 

@@ -1,15 +1,16 @@
 "use client";
 import { SSX } from "@spruceid/ssx";
 import { useEffect, useState } from "react";
+import { Button, Input, Textarea, Table, Tbody, Tr, Td, Box, } from "@chakra-ui/react";
 
 interface IKeplerStorageComponent {
-  ssx: SSX
+  ssx: SSX;
 }
 
 const KeplerStorageComponent = ({ ssx }: IKeplerStorageComponent) => {
-
-  const [key, setKey] = useState<string>('');
-  const [value, setValue] = useState<string>('');
+  const [key, setKey] = useState<string>("");
+  const [value, setValue] = useState<string>("");
+  const [letter, setletter] = useState<string>("");
   const [contentList, setContentList] = useState<Array<string>>([]);
   const [viewingContent, setViewingContent] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
@@ -18,112 +19,134 @@ const KeplerStorageComponent = ({ ssx }: IKeplerStorageComponent) => {
     getContentList();
   }, []);
 
+
   const getContentList = async () => {
     setLoading(true);
     let { data } = await ssx.storage.list();
-    data = data.filter((d: string) => d.includes('/content/'))
+    data = data.filter((d: string) => d.includes("/content/"));
     setContentList(data);
     setLoading(false);
   };
 
-  const handlePostContent = async (key: string, value: string) => {
-    if (!key || !value) {
-      alert('Invalid key or value');
+  const handlePostContent = async (
+    key: string,
+    value: string,
+    letter: string
+  ) => {
+    if (!key || !value || !letter) {
+      alert("Invalid inputs");
       return;
     }
-    const formatedKey = 'content/' + key.replace(/\ /g, '_');
+    const formatedKey = "content/" + key.replace(/\ /g, "_");
     setLoading(true);
-    await ssx.storage.put(formatedKey, value);
+    await ssx.storage.put(formatedKey, letter);
     setContentList((prevList) => [...prevList, `my-app/${formatedKey}`]);
-    setKey('');
-    setValue('');
+    setKey("");
+    setValue("");
+    setletter("");
     setLoading(false);
   };
 
   const handleGetContent = async (content: string) => {
     setLoading(true);
-    const contentName = content.replace('my-app/', '')
+    const contentName = content.replace("my-app/", "");
     const { data } = await ssx.storage.get(contentName);
-    setViewingContent(`${content}:\n${data}`);
+    setViewingContent(data.split("\n"));
     setLoading(false);
   };
 
   const handleDeleteContent = async (content: string) => {
     setLoading(true);
-    const contentName = content.replace('my-app/', '')
+    const contentName = content.replace("my-app/", "");
     await ssx.storage.delete(contentName);
     setContentList((prevList) => prevList.filter((c) => c !== content));
     setLoading(false);
   };
 
   return (
-    <div style={{ marginTop: 50 }}>
-      <h2>Storage Module</h2>
-      <p>Store your data in Kepler Orbit</p>
-      <p style={{ maxWidth: 500, fontSize: 12 }}>
-        Kepler is a decentralized <b>key-value</b> storage system that uses DIDs and Authorization Capabilities to define Orbits,
-        where your data lives, and who has access. In this example we will store a value (string) indexed by a key (string).
-      </p>
-      <input
-        type="text"
-        placeholder="Key"
-        value={key}
-        onChange={(e) => setKey(e.target.value)}
-        disabled={loading}
-      />
-      <br />
-      <input
-        type="text"
-        placeholder="Value"
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-        disabled={loading}
-      />
-      <br />
-      <button
-        onClick={() => handlePostContent(key, value)}
-        disabled={loading}
-        style={{ marginTop: 15 }}
-      >
-        <span>
-          POST
-        </span>
-      </button>
-      <p><b>My Kepler data</b></p>
-      <table>
-        <tbody>
-          {contentList?.map((content, i) => <tr key={i}>
-            <td>
-              {content}
-            </td>
-            <td>
-              <button
-                onClick={() => handleGetContent(content)}
-                disabled={loading}
-              >
-                <span>
-                  GET
-                </span>
-              </button>
-            </td>
-            <td>
-              <button
-                onClick={() => handleDeleteContent(content)}
-                disabled={loading}
-              >
-                <span>
-                  DELETE
-                </span>
-              </button>
-            </td>
-          </tr>)}
-        </tbody>
-      </table>
-      <pre style={{ marginTop: 25, marginBottom: 0 }}>
-        {viewingContent}
-      </pre>
+    <div style={{ marginTop: 50, display: "flex", justifyContent: "center" }}>
+      <div style={{ textAlign: "center", maxWidth: 500, margin: "20px" }}>
+        <h1>Storage Module</h1>
+        <h3>Store your letters and notes in Kepler Orbit</h3>
+
+        <div>
+          <Input
+            width="lg"
+            type="text"
+            placeholder="Title"
+            value={key}
+            onChange={(e) => setKey(e.target.value)}
+            disabled={loading}
+            margin="10px"
+          />
+          <Input
+            width="lg"
+            type="text"
+            placeholder="From"
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+            disabled={loading}
+            margin="10px"
+          />
+          <br />
+          <Textarea
+            width="lg"
+            height="sm"
+            placeholder="Paste Letter"
+            value={letter}
+            onChange={(e) => setletter(e.target.value)}
+            disabled={loading}
+            margin="10px"
+          />
+          <br />
+          <Button
+            onClick={() => handlePostContent(key, value, letter)}
+            disabled={loading}
+            style={{ marginTop: 15 }}
+          >
+            <span>POST</span>
+          </Button>
+        </div>
+        <p>
+          <b>My Data Vault</b>
+        </p>
+        <Table>
+          <Tbody>
+            {contentList?.map((content, i) => (
+              <Tr key={i}>
+                <Td>{content}</Td>
+                <Td>
+                  <Button
+                    onClick={() => handleGetContent(content)}
+                    disabled={loading}
+                  >
+                    <span>GET</span>
+                  </Button>
+                </Td>
+                <Td>
+                  <Button
+                    onClick={() => handleDeleteContent(content)}
+                    disabled={loading}
+                  >
+                    <span>DELETE</span>
+                  </Button>
+                </Td>
+              </Tr>
+            ))}
+          </Tbody>
+        </Table>
+        <Box style={{ marginTop: "25px", marginBottom: "0"}}>
+          <Box
+            style={{ display: "flex", flexDirection: "column", gap: "10px" }}
+          > 
+            {viewingContent?.map((line, i) => (
+              <Box key={i}>{line}</Box>
+            ))}
+          </Box>
+        </Box>
+      </div>
     </div>
   );
-}
+};
 
 export default KeplerStorageComponent;
