@@ -115,7 +115,7 @@ npm run dev
 
 ## 🎉 Acknowledgments <a name = "acknowledgments"></a>
 
-Special thanks to Encode Team for putting this hackathon together, and Spruce team for answering questions and providing us with great resources. 
+Special thanks to Encode Team for putting this hackathon together, and the Spruce team for answering questions and providing us with great resources. 
 
 - Inspiration: [Joyce built using SpruceId](https://joyce.spruceid.xyz/)
 - Inspiration: [Job Verficiation Application](https://github.com/spruceid/verifiable-job-application)
