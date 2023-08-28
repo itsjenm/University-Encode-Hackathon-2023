@@ -24,7 +24,6 @@
 
 - [Problem Statement](#problem_statement)
 - [Idea / Solution](#idea)
-- [Dependencies / Limitations](#limitations)
 - [Future Scope](#future_scope)
 - [Setting up a local environment](#getting_started)
 - [Usage](#usage)
@@ -39,7 +38,7 @@ Keeping track of scholarship applications is hard, and it's even more stressful 
 
 - IDEAL: Have a place to store and process recommendations efficiently by sending letters of recommendations to your professors/collegues to fill out, and reuse them in several scholarships and college applications. 
 
-- REALITY: Recommendations take time to be written and processed, and many students get discouraged from applying to scholarships for this reasion. Recommendations usually have to be sent to the instutions privately and directly. However, it would be great to have a way to send friends a link to have them process the recommendation easily and fast for your benefit. 
+- REALITY: Recommendations take time to be written and processed, and many students get discouraged from applying to scholarships for this reason. Recommendations usually have to be sent to the instutions privately and directly. However, it would be great to have a way to send friends a link to have them process the recommendation easily and fast for your benefit. 
 
 - CONSEQUENCES: Not having a place dedicated to managing scholarships and recommendations discourages a lot of students from applying and from receiving funding opportunities. 
 
@@ -48,19 +47,15 @@ Keeping track of scholarship applications is hard, and it's even more stressful 
 
 A web app that keeps your recommendations secured, accessible, and within reach for you to use in scholarships, college applications and more. 
 
-## ⛓️ Dependencies / Limitations <a name = "limitations"></a>
 
-- What are the dependencies of your project?
-- Describe each limitation in detailed but concise terms
-- Explain why each limitation exists
-- Provide the reasons why each limitation could not be overcome using the method(s) chosen to acquire.
-- Assess the impact of each limitation in relation to the overall findings and conclusions of your project, and if
-  appropriate, describe how these limitations could point to the need for further research.
 
 ## 🚀 Future Scope <a name = "future_scope"></a>
 
-Write about what you could not develop during the course of the Hackathon; and about what your project can achieve
-in the future.
+- Enable option to have users send emails or messages through the application to get recommendations from others
+
+- Add Student Dashboard: track and manage documents, notes
+
+- Profile page updates: allow users to update their profile, and or add portfolio 
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
@@ -122,4 +117,5 @@ npm run dev
 
 
 - Inspiration: [Joyce built using SpruceId](https://joyce.spruceid.xyz/)
+- Inspiration: [Job Verficiation Application](https://github.com/spruceid/verifiable-job-application)
 
